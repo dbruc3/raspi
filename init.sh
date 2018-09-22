@@ -18,12 +18,11 @@ if [[ `whoami` == 'root' ]]; then
 
 	# raspi-config
 	hostname pi
-	# sed -i -e 's/en_GB/#en_GB/g' /etc/local.gen
-	# sed -i -e 's/#en_US.UTF-8/en_US.UTF-8/g' /etc/local.gen
-	echo 'en_US.UTF-8' >> /etc/local.gen
+	sed -i -e 's/en_GB/#en_GB/g' /etc/locale.gen
+	sed -i -e 's/#en_US.UTF-8/en_US.UTF-8/g' /etc/locale.gen
 	locale-gen en_US.UTF-8
 	sed -i -e 's/en_GB/en_US/g' /etc/default/locale
-	echo 'LC_ALL=en.US.UTF-8' >> /etc/default/locale
+	echo 'LC_ALL=en_US.UTF-8' >> /etc/default/locale
 	update-locale en_US.UTF-8
 	cp /usr/share/zoneinfo/America/New_York /etc/localtime
 	localectl set-x11-keymap us
